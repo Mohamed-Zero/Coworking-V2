@@ -4,13 +4,13 @@
  */
 package com.mycompany.coworkingspace;
 
-import static com.mycompany.coworkingspace.CoworkingSpace.FileRead;
+
 import static com.mycompany.coworkingspace.CoworkingSpace.FileWrite;
 import static com.mycompany.coworkingspace.CoworkingSpace.in;
 import static com.mycompany.coworkingspace.CoworkingSpace.visitors;
 import com.mycompany.coworkingspace.Visitors.Login;
 import com.mycompany.coworkingspace.Visitors.Regestration;
-import java.util.Scanner;
+
 
 /**
  *
@@ -56,12 +56,7 @@ public class Menus {
                     String email=in.next();
                     System.out.println("enter pass\n");
                     String pass=in.next();
-                   check= Login.VisitorLogin(visitors, email, pass);
-                 Menus.VisitorMenu();
-                    if(check==false){
-                        System.out.println("Invalid Admin\n");
-                         Menus.VisitorMenu();
-                    }
+                  Login.VisitorLogin(visitors, email, pass);
                    break;
                 case 4 :
                     Menus.Exit();

@@ -85,7 +85,7 @@ public class AbstractVisitor implements Serializable{
    
     
     public String toString(){
-        return this.Name+" "+this.Email+" "+this.PhoneNum+" "+this.Password+" "+this.type;
+        return this.Name+" "+this.Email+" "+this.PhoneNum+" "+this.Password+" "+this.type+"|";
     }
     
 

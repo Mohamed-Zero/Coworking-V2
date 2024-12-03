@@ -5,10 +5,12 @@
 package com.mycompany.coworkingspace;
 
 import com.mycompany.coworkingspace.Visitors.AbstractVisitor;
+import java.io.BufferedReader;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -33,8 +35,10 @@ public class CoworkingSpace {
   
   public static  void FileWrite(){
         try {
-            File file =new File("C:\\Users\\Mohamed\\javafile\\test.txt");
+          
+            File file =new File("test.txt");
            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+           
            for(AbstractVisitor a :visitors){
                oos.writeObject(a);
            }
@@ -44,20 +48,36 @@ public class CoworkingSpace {
         }
   }
      
-   public static  void FileRead() throws Exception{
+   public static  AbstractVisitor FileRead() {
+       AbstractVisitor a=null;
         try {
-            File file =new File("C:\\Users\\Mohamed\\javafile\\test.txt");
-           ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-           AbstractVisitor a=(AbstractVisitor)ois.readObject();
-           System.out.println(a);
+        
+           
+            File file =new File("test.txt");
+          ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+          String line;
+          while((line = ois.readLine())!="|"){
+              a=(AbstractVisitor)ois.readObject();
+               visitors.add(a);
+           }
+           
            ois.close();
+
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+        finally{
+           
+            return a;
         }
   }
      
     public static void main(String[] args) throws Exception {
-    
+   FileRead();
+        
+   
+      
+  
    Menus.MainMenu();
    
       
